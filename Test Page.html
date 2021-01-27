@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)http://localhost:63342/jquery-3.5.1.min.js/Flexcourses/jQuery/test.html?_ijt=54dm9ilndurkmols7219bvbppj -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Test Page</title>
+  <style media="screen">
+    .box {
+      height: 728px;
+      width: 1510px;
+      padding: 5px;
+      background-image: url("desert-marocain-1.jpg");
+    }
+    .inner {
+      width: 200px;
+      height: 200px;
+    }
+  </style></head>
+  
+  <body data-new-gr-c-s-check-loaded="14.991.0" data-gr-ext-installed="">
+    <div class="box" style="position: relative;">
+      <button type="button" name="button" id="startGame" style="position: absolute; right: 0;">Start Game</button>
+      <img id="brid" src="./Test Page_files/bird.png" width="230" height="170">
+    <div class="inner"></div></div>
+    
+    <script src="./Test Page_files/jquery-3.5.1.min.js.download"></script>
+    <script>
+      $( document ).ready(function(){
+        // document is now ready
+        $("#startGame").click(function(){
+          $(this).hide();
+          $('.lost').hide();
+          animate(2000);
+        });
+
+        $(".box").append("<div class='inner'></div>");
+
+        var boxWidth = $(".box").innerWidth();
+        var boxHeight = $(".box").innerHeight();
+
+        var innerWidth = $(".inner").outerWidth();
+        var innerHeight = $(".inner").outerHeight();
+
+        var widthSpacing = (boxWidth - innerWidth) - 1;
+        var heightSpacing = (boxHeight - innerHeight) - 1;
+
+        $(".box").css("position", "relative");
+
+        function animate(speed){
+          $("#brid").show();
+          // if user clicks on .inner
+          $("#brid").click(function(){
+            $(this).remove();
+            $(".box").html("<h1 align='center'>You are win</h1>");
+          });
+
+          // start animating
+          $("#brid")
+          .css({"position": "absolute", "left": "0", "top": "0"})
+          .animate({left: widthSpacing}, speed)
+        }
+      });
+    </script>
+  
+</body></html>
