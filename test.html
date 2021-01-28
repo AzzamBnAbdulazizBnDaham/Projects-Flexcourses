@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Page</title>
+  </head>
+  <style media="screen">
+    .box {
+      height: 728px;
+      width: 1510px;
+      padding: 5px;
+      background-image: url("desert-marocain-1.jpg");
+    }
+    .inner {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <div class="box">
+      <button type="button" name="button" id='startGame' style='position: absolute; right: 0;'>Start Game</button>
+      <img id="brid" src="bird.png" width="230" height="170">
+    </div>
+    </div>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+      $( document ).ready(function(){
+        // document is now ready
+        $("#startGame").click(function(){
+          $(this).hide();
+          $('.lost').hide();
+          animate(2000);
+        });
+
+        $(".box").append("<div class='inner'></div>");
+
+        var boxWidth = $(".box").innerWidth();
+        var boxHeight = $(".box").innerHeight();
+
+        var innerWidth = $(".inner").outerWidth();
+        var innerHeight = $(".inner").outerHeight();
+
+        var widthSpacing = (boxWidth - innerWidth) - 1;
+        var heightSpacing = (boxHeight - innerHeight) - 1;
+
+        $(".box").css("position", "relative");
+
+        function animate(speed){
+          $("#brid").show();
+          // if user clicks on .inner
+          $("#brid").click(function(){
+            $(this).remove();
+            $(".box").html("<h1 align='center'>You are win</h1>");
+          });
+
+          // start animating
+          $("#brid")
+          .css({"position": "absolute", "left": "0", "top": "0"})
+          .animate({left: widthSpacing}, speed)
+        }
+      });
+    </script>
+  </body>
+</html>
